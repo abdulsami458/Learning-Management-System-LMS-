@@ -1,6 +1,7 @@
 package com.astra.learning.management.system.model;
 
 import com.astra.learning.management.system.Role.Role;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Enrollment> enrollments = new ArrayList<>();
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package com.astra.learning.management.system.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Course {
     private String courseCode;
 
     @OneToMany(mappedBy = "course")
+    @JsonManagedReference
     private List<Enrollment> enrollments = new ArrayList<>();
 
     public Long getId() {
