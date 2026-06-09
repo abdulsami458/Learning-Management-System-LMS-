@@ -38,6 +38,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth->
                         auth.requestMatchers("/register","/signUp","/login","/h2-console/**")
                                 .permitAll()
+                                .requestMatchers( "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/v3/api-docs/**",
+                                        "/v3/api-docs",
+                                        "/webjars/**").permitAll()
                                 .anyRequest()
                                 .authenticated())
                 .formLogin(form->form.disable())
