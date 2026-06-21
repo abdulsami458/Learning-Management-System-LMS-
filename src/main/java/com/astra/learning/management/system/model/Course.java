@@ -16,7 +16,6 @@ public class Course {
     private String courseCode;
 
     @OneToMany(mappedBy = "course")
-    @JsonManagedReference
     private List<Enrollment> enrollments = new ArrayList<>();
 
     public Long getId() {

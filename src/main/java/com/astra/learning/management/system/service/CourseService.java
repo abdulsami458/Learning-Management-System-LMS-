@@ -1,6 +1,7 @@
 package com.astra.learning.management.system.service;
 
 import com.astra.learning.management.system.dto.CourseDto;
+import com.astra.learning.management.system.dto.EnrollmentResponse;
 import com.astra.learning.management.system.model.Course;
 import com.astra.learning.management.system.model.Enrollment;
 import com.astra.learning.management.system.model.User;
@@ -35,12 +36,15 @@ public class CourseService {
         return courseRepo.save(course);
     }
 
-    public List<Course> viewMyCourses(){
+    public List<EnrollmentResponse> viewMyCourses(){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepo.findByEmail(email).orElseThrow(()->new RuntimeException("Email Not Found"));
         List<Enrollment> enrollments = enrollmentRepo.findByUser(user);
         return enrollments.stream()
-                .map(Enrollment::getCourse)
+                .map(enrollment-> new EnrollmentResponse(
+                        enrollment.getCourse().getCourseName(),
+                        enrollment.getCourse().getCourseCode()
+                ))
                 .toList();
     }
 }

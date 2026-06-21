@@ -22,7 +22,6 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
     private List<Enrollment> enrollments = new ArrayList<>();
 
     public Long getId() {

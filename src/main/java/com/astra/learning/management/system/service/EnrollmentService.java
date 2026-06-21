@@ -8,6 +8,8 @@ import com.astra.learning.management.system.model.User;
 import com.astra.learning.management.system.repository.CourseRepo;
 import com.astra.learning.management.system.repository.EnrollmentRepo;
 import com.astra.learning.management.system.repository.UserRepo;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,10 +28,12 @@ public class EnrollmentService {
     }
 
     public Enrollment enroll(EnrollmentRequest enrollmentRequest){
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Course course = courseRepo.findById(enrollmentRequest.getCourseId()).orElseThrow(
                 ()-> new RuntimeException("No Course Found")
         );
-        User user = userRepo.findById(enrollmentRequest.getUserId()).orElseThrow(
+        User user = userRepo.findByEmail(email).orElseThrow(
                 ()-> new RuntimeException("No User Found")
         );
 

@@ -1,6 +1,7 @@
 package com.astra.learning.management.system.controller;
 
 import com.astra.learning.management.system.dto.CourseDto;
+import com.astra.learning.management.system.dto.EnrollmentResponse;
 import com.astra.learning.management.system.model.Course;
 import com.astra.learning.management.system.repository.CourseRepo;
 import com.astra.learning.management.system.service.CourseService;
@@ -31,8 +32,7 @@ public class CourseController {
     }
 
     @GetMapping("/my-courses")
-    public ResponseEntity<List<Course>> viewMyCourses(){
-        List<Course> courses =courseService.viewMyCourses();
-        return ResponseEntity.ok(courses);
+    public ResponseEntity<List<EnrollmentResponse>> viewMyCourses(){;
+        return ResponseEntity.ok(courseService.viewMyCourses());
     }
 }
