@@ -25,13 +25,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/student-signUp")
     public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
         userService.register(userDto, Role.ROLE_STUDENT);
         return ResponseEntity.ok( "Registration Successful");
     }
 
-    @PostMapping("/signUp")
+    @PostMapping("/teacher-signUp")
     public ResponseEntity<String> registerInstructor(@RequestBody UserDto userDto) {
         userService.register(userDto, Role.ROLE_INSTRUCTOR);
         return ResponseEntity.ok("Registration Successful");

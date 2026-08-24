@@ -36,7 +36,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http){
         http
                 .authorizeHttpRequests(auth->
-                        auth.requestMatchers("/register","/signUp","/login","/h2-console/**")
+                        auth.requestMatchers("/teacher-signUp","/student-signUp","/login","/h2-console/**")
                                 .permitAll()
                                 .requestMatchers( "/swagger-ui/**",
                                         "/swagger-ui.html",
